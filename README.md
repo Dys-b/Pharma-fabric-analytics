@@ -24,20 +24,20 @@ Public Pharmaceutical Data
    Analytics / Power BI
 ```
 
-##The transformation layer follows a simple ELT approach:
+## The transformation layer follows a simple ELT approach:
 
--RAW preserves source data.
-S-taging standardizes and prepares individual datasets.
--Marts combines validated staging models into analytics-ready structures.
+- **RAW** preserves source data.
+- **Staging** standardizes and prepares individual datasets.
+- **Marts** combines validated staging models into analytics-ready structures.
 
 ## Tech Stack
-```text
-Snowflake — cloud data warehouse
-dbt — transformation, testing, and dependency management
-SQL — data modeling and transformation
-Python — data ingestion and supporting automation
-Power BI — downstream analytics and visualization
-```
+
+- **Snowflake** — cloud data warehouse
+- **dbt** — transformation, testing, and dependency management
+- **SQL** — data modeling and transformation
+- **Python** — data ingestion and supporting automation
+- **Power BI** — downstream analytics and visualization
+
 
 ## dbt Project Structure
 ```text
@@ -69,29 +69,29 @@ The staging layer creates standardized representations of the source datasets.
 
 Current staging models include:
 
-Products
-Packaging
-Active ingredients
-Administration routes
+- Products
+- Packaging
+- Active ingredients
+- Administration routes
 
 These models isolate source-specific transformations from downstream analytical logic.
 
 ## Analytics Mart
-dim_drug_package
+**dim_drug_package**
 
 The dimensional model combines product-level information with package-level attributes to create a reusable analytical dataset.
 
 It includes attributes such as:
 
-Product identifiers
-Brand and generic names
-Labeler information
-Dosage form
-Product type
-Marketing category
-Package description
-Sample indicator
-Marketing start and end dates
+- Product identifiers
+- Brand and generic names
+- Labeler information
+- Dosage form
+- Product type
+- Marketing category
+- Package description
+- Sample indicator
+- Marketing start and end dates
 
 This model is materialized as a table for downstream analytical consumption.
 
@@ -101,9 +101,9 @@ Data quality is validated automatically during the dbt build.
 
 Tests include:
 
-not_null checks for required fields
-relationships tests for referential integrity
-Business-rule validation using dbt_utils
+- '*not_null*' checks for required fields
+- '*relationships*' tests for referential integrity
+- Business-rule validation using '*dbt_utils*'
 
 A build is considered successful only when both transformations and their associated tests complete successfully.
 
@@ -112,23 +112,23 @@ A build is considered successful only when both transformations and their associ
 External dbt packages are declared in packages.yml.
 
 Install dependencies with:
-
+```text
 dbt deps
-
+```
 This project currently uses dbt-utils for reusable testing functionality.
 
 ## Running the Project
 
 After configuring the Snowflake connection in your dbt profile:
-
+```text
 dbt deps
 dbt build
-
-dbt build executes the project DAG, builds the models, and runs the associated data-quality tests.
+```
+```dbt build```executes the project DAG, builds the models, and runs the associated data-quality tests.
 
 ## Lineage
 
-dbt manages dependencies between staging models and downstream marts through ref().
+dbt manages dependencies between staging models and downstream marts through ```ref()```.
 
 Conceptually:
 ```text
@@ -153,13 +153,20 @@ The dashboard represents the final consumption layer of the pipeline rather than
 
 This project was built as a practical demonstration of analytics engineering concepts:
 
-ELT architecture
-Cloud data warehousing
-Layered data modeling
-Modular SQL development
-Data lineage
-Automated data-quality testing
-Reproducible builds
-BI consumption
+- ELT architecture
+- Cloud data warehousing
+- Layered data modeling
+- Modular SQL development
+- Data lineage
+- Automated data-quality testing
+- Reproducible builds
+- BI consumption
 
 The emphasis is not only on producing a dataset, but on building a transformation workflow that is testable, modular, and reproducible.
+
+## Successful dbt Build
+![Successful dbt build](docs/images/dbt-build-success.png)
+
+The project successfully builds all models and passes all configured data-quality tests.
+
+**Build result:** 5 models, 13 tests, 18/18 successful.
