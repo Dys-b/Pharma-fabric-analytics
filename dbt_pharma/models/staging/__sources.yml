@@ -1,0 +1,11 @@
+version: 2
+
+# Try using these source definitions instead!
+sources:
+  - name: pharma_raw
+    database: PHARMA_ANALYTICS
+    schema: RAW
+    tables:
+      - name: NDC_RAW
+        description: Raw openFDA NDC JSON records loaded into Snowflake
+      

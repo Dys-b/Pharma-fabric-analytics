@@ -1,0 +1,17 @@
+name: pharma_analytics
+
+profile: pharma_analytics
+
+seed-paths: ["seeds"]
+model-paths: ["models"]
+macro-paths: ["macros"]
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  pharma_analytics:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

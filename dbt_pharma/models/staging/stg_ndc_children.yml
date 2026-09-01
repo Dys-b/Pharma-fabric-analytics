@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_ndc_active_ingredients
+    columns:
+      - name: PRODUCT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_ndc_products')
+                field: PRODUCT_ID
+
+      - name: INGREDIENT_NAME
+        data_tests:
+          - not_null
+
+  - name: stg_ndc_routes
+    columns:
+      - name: PRODUCT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_ndc_products')
+                field: PRODUCT_ID
+
+      - name: ROUTE
+        data_tests:
+          - not_null
+
+  - name: stg_ndc_packaging
+    columns:
+      - name: PRODUCT_ID
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_ndc_products')
+                field: PRODUCT_ID
+
+      - name: PACKAGE_NDC
+        data_tests:
+          - not_null

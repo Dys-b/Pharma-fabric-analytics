@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_ndc_products
+    description: "Cleaned and flattened openFDA NDC product records."
+
+    columns:
+      - name: PRODUCT_ID
+        description: "Unique identifier for each NDC product record."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: PRODUCT_NDC
+        description: "FDA product-level NDC."
+        data_tests:
+          - not_null
+
+      - name: LABELER_NAME
+        data_tests:
+          - not_null
